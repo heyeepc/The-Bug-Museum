@@ -15,7 +15,7 @@ def Simulated():
 
     total = roll1 + roll2
 
-    return roll1, roll2, total  # ✅ 返回
+    return roll1, roll2, total 
 
 
 # 测试

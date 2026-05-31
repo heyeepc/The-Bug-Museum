@@ -30,30 +30,33 @@ Python 去看现在的列表 b 中索引 1 的位置是谁？
 # 1. 绝杀技：列表推导式（List Comprehension）——最推荐
 不要去破坏原列表，而是创建一个只包含需要保留的元素的新列表。
 #过滤掉所有的辅音，只保留元音
+```python
 alphabet_Vowel = ['a', 'e', 'i', 'o', 'u']
 b = ['t', 'h', 'i', 'n', 'k']
 
 这一行意思：只有当 letter 在元音列表里时，才把它放进新列表
 b = [letter for letter in b if letter in alphabet_Vowel]
 print(b)  # 输出: ['i']
-
+```
 # 2.拷贝切片遍历：for item in b[:]
 通过 b[:] 创建一个原列表的副本（影子）。你遍历的是影子，删除的是本体。因为影子的索引不会变，所以本体怎么塌陷都不会影响遍历过程。
+```python
 b = ['t', 'h', 'i', 'n', 'k']
 alphabet_Consonant = ['t', 'h', 'n', 'k'] # 简化举例
 
 for i in b[:]: # 注意这里的 [:]，遍历的是副本
     if i in alphabet_Consonant:
         b.remove(i) # 删除的是原列表 b
-
 print(b) # 输出: ['i']
-
+```
 # 3. 倒序遍历（从后往前删）
 因为删除元素只会影响被删元素后面的索引，不会影响前面的。所以如果我们从最后一个元素开始往前遍历，即使删除了元素，前面还没遍历到的元素索引依然是安全的。
+```python
 b = ['t', 'h', 'i', 'n', 'k']
 range(start, stop, step) 倒序遍历
 for i in range(len(b) - 1, -1, -1):
     if b[i] == 't' or b[i] == 'h':
         b.remove(b[i])
+```
 
 永远不要在切蛋糕的同时，还去重新调整蛋糕切片的顺序。要修改列表，要么给它拍个照片（副本）对着删，要么直接重新做个新蛋糕（列表推导式）
